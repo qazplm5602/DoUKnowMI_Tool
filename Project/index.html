@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../global/fonts/font.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/background.css">
+    <link rel="stylesheet" href="./css/block.css">
+    <link rel="stylesheet" href="./css/contextMenu.css">
+
+    <!-- JS -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}
+    </script>
+    <script src="../global/js/jquery-latest.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
+
+    <script src="./js/DB.js"></script>
+    <script src="./js/blockSys.js"></script>
+
+    <title>Stage 1 프로젝트</title>
+</head>
+
+<body>
+    <div class="background-main"></div>
+
+    <header class="header-main">
+        <section>
+            <button>파일</button>
+            <button>설정</button>
+        </section>
+        <section>
+            <div class="option-size-main">
+                <div class="option-size-text">화면크기:</div>
+                <input type="number" value="100">%
+            </div>
+        </section>
+    </header>
+
+    <div class="block-y">
+        <!-- <section class="block-x">
+            <div class="block">
+                <img src="./assets/Enemys/test.gif">
+            </div>
+            <div class="block">
+                <div class="x"></div>
+            </div>
+        </section> -->
+    </div>
+
+    <div class="context-main" style="display: none;">
+        <button>추가</button>
+        <button>삭제</button>
+        <button>위치 복사</button>
+    </div>
+</body>
+</html>

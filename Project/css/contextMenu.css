@@ -1,0 +1,68 @@
+.context-main {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    width: max-content;
+    min-width: 200px;
+    height: max-content;
+
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(50px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+    box-sizing: border-box;
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.context-main > button {
+    text-align: left;
+    height: 30px;
+
+    color: white;
+    font-size: 15px;
+
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+    outline: none;
+
+    cursor: pointer;
+    
+    transition: background 150ms;
+    /* border-radius: 5px; */
+}
+
+.context-main > button:first-child {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.context-main > button:last-child {
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.context-main > button:not(:first-child) {
+    margin-top: 3px;
+}
+
+.context-main > button:last-child {
+    border-bottom: none;
+}
+
+.context-main > button:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.context-main > button:disabled {
+    color: rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+}

@@ -1,0 +1,28 @@
+.background-main {
+    position: fixed;
+    
+    width: 100%;
+    height: 100%;
+
+    z-index: -10;
+
+    background-image: url(../assets/rm218-bb-07.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    filter: blur(100px);
+}
+
+/* .background-main > .circle {
+    position: absolute;
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    width: 500px;
+    height: 500px;
+
+    background: red;
+    border-radius: 100%;
+} */

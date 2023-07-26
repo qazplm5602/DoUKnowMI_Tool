@@ -1,0 +1,55 @@
+.block-y {
+    position: fixed;
+
+    top: calc(50% + 51px / 2);
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    width: max-content;
+    height: max-content;
+
+    border: 6px solid black;
+    border-right: none;
+    border-bottom: none;
+
+    display: block;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.block-x {
+   width: max-content;
+   height: max-content;
+   
+   display: flex;
+   
+}
+
+.block-x > .block {
+    position: relative;
+    
+    width: 80px;
+    height: 80px;
+
+    background: white;
+    border: 6px solid black;
+    border-left: none;
+    border-top: none;
+}
+
+.block-x > .block > img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.block-x > .block > .x {
+    width: 100%;
+    height: 100%;
+
+    background-color: gray;
+    background-image: url(../assets/Forbidden.svg);
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+    background-position: center center;
+}
