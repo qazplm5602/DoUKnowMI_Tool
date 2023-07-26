@@ -6,6 +6,7 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="../global/fonts/font.css">
+    <link rel="stylesheet" href="../global/css/jquery-ui.min.css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/background.css">
@@ -16,9 +17,11 @@
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}
     </script>
     <script src="../global/js/jquery-latest.min.js"></script>
+    <script src="../global/js/jquery-ui.min.js"></script>
     <script>if (window.module) module = window.module;</script>
 
     <script src="./js/DB.js"></script>
+    <script src="./js/contextMenu.js"></script>
     <script src="./js/blockSys.js"></script>
 
     <title>Stage 1 프로젝트</title>
@@ -39,6 +42,8 @@
             </div>
         </section>
     </header>
+
+    <div class="context-background" style="display: none;"></div>
 
     <div class="block-y">
         <!-- <section class="block-x">

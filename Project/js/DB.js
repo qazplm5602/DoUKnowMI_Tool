@@ -3,11 +3,21 @@ const domiDB = {
     size: 4,
     player: [0,0],
     data: {
-        "0,0": {
+        "2,2": {
             character: "empty"
         },
-        "2,3": {
+        "0,1": {
             character: "empty"
         },
     },
+}
+
+const Enemy_List = {
+    empty: [
+        "테스트 이재용",
+        "test.gif",
+        [
+            [0,-1],
+        ]
+    ]
 }
