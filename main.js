@@ -5,8 +5,9 @@ if (!app.requestSingleInstanceLock()) {
     return;
 }
 
+const mainStart = require("./scripts/MainStart.js");
 app.whenReady().then(() => {
-
+    mainStart.init();
 });
 
 app.on('second-instance', () => {
