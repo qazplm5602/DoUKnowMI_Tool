@@ -1,8 +1,8 @@
 const { BrowserWindow } = require("electron");
-const window = exports.window = undefined;
+exports.window = undefined;
 
 exports.init = function() {
-    let _window = new BrowserWindow({
+    exports.window = new BrowserWindow({
         width: 1300,
         height: 740,
         minWidth: 1000,
@@ -16,8 +16,6 @@ exports.init = function() {
             contextIsolation: false,
         }
     });
-    _window.setMenuBarVisibility(false);
-    _window.loadFile("./MainStart/index.html");
-
-    window = _window;
+    exports.window.setMenuBarVisibility(false);
+    exports.window.loadFile("./MainStart/index.html");
 }

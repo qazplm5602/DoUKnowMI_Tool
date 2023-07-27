@@ -12,6 +12,9 @@ const domiDB = {
     },
 }
 
+let SaveFilePath;
+let SaveDiff = true;
+
 const Enemy_List = {
     empty: [
         "테스트 이재용",

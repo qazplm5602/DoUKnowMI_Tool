@@ -150,6 +150,7 @@ blockSys.SpawnEnemy = function(x, y, enemyID) {
         character: enemyID
     };
 
+    SaveDiff = true;
     return true;
 }
 
@@ -186,6 +187,7 @@ blockSys.RemoveEnemy = function(x, y) {
     });
 
     delete domiDB.data[x+","+y];
+    SaveDiff = true;
 }
 
 blockSys.StatusBlock = function(x, y) {

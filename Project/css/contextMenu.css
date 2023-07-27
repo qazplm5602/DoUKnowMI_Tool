@@ -23,6 +23,8 @@
     flex-direction: column;
     
     transition: top 150ms, left 150ms;
+
+    z-index: 99999;
 }
 
 .context-main > button {

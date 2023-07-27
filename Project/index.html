@@ -23,7 +23,9 @@
     <script src="../global/js/jquery-ui.min.js"></script>
     <script>if (window.module) module = window.module;</script>
 
+    <script src="../global/js/electron.js"></script>
     <script src="./js/DB.js"></script>
+    <script src="./js/header.js"></script>
     <script src="./js/contextMenu.js"></script>
     <script src="./js/zoom.js"></script>
     <script src="./js/blockSys.js"></script>
@@ -37,8 +39,8 @@
 
     <header class="header-main">
         <section>
-            <button>파일</button>
-            <button>설정</button>
+            <button id="header-button-file">파일</button>
+            <button id="header-button-setting">설정</button>
         </section>
         <section>
             <div class="option-size-main">
@@ -73,26 +75,7 @@
             <div class="window-head-title">Example Title</div>
             <img class="window-head-close" onclick="domiWindow.hide()" src="./assets/close.svg">
         </div>
-
-        <div class="window-character">
-            <button>
-                <div class="name">테스트 이재용</div>
-                <section>
-                    <img src="./assets/Enemys/test.gif">
-                    <div class="preview">
-                        <img class="char" src="./assets/Enemys/test.gif">
-                        <img class="xdomi" style="transform: translate(-50%, 0); top: 5px;" src="./assets/Forbidden.svg">
-                        <img class="xdomi" style="left: initial; right: 5px; transform: translate(0, -50%);" src="./assets/Forbidden.svg">
-                        <img class="xdomi" style="top: initial; bottom: 5px; transform: translate(-50%, 0);" src="./assets/Forbidden.svg">
-                        <img class="xdomi" style="left: 5px; transform: translate(0, -50%);" src="./assets/Forbidden.svg">
-                        <img class="xdomi" style="top: 5px; left: 5px; transform: translate(0, 0);" src="./assets/Forbidden.svg">
-                        <img class="xdomi" style="top: 5px; left: initial; right: 5px; transform: translate(0, 0);" src="./assets/Forbidden.svg">
-                        <img class="xdomi" style="top: initial; bottom: 5px; left: initial; right: 5px; transform: translate(0, 0);" src="./assets/Forbidden.svg">
-                        <img class="xdomi" style="top: initial; left: 5px; bottom: 5px; transform: translate(0, 0);" src="./assets/Forbidden.svg">
-                    </div>
-                </section>
-            </button>
-        </div>        
+     
         <!-- <div class="alert-content">어쩔티비 어쩔티비 어쩔티비 어쩔티비 어쩔티비</div> -->
     </div>
 </body>
