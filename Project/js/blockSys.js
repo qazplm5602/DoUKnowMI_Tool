@@ -1,10 +1,5 @@
 let blockSys = {};
 
-// TEST CODE
-$(function() {
-    blockSys.Init();
-});
-
 blockSys.Init = function() {
     // 블럭 생성
     for (let i = 0; i < domiDB.size; i++) {

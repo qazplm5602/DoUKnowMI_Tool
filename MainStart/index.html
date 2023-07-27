@@ -13,6 +13,7 @@
     </script>
     <script src="../global/js/jquery-latest.min.js"></script>
     <script>if (window.module) module = window.module;</script>
+    <script src="../global/js/electron.js"></script>
     <script src="index.js"></script>
 
     <title>DOyouKnowMI Tool - 메인</title>
@@ -21,11 +22,11 @@
     <img class="background-domi" src="./Assets/backbackbackground.png">
     <div id="DOYouKnowMI" class="title">저 아세요? Tools</div>
     <section class="button-list">
-        <button>
+        <button onclick="ipcRenderer.send('MainStart.newStage')">
             <img src="./Assets/create_new.svg" alt="">
             <div>새로 스테이지 만들기</div>
         </button>
-        <button>
+        <button onclick="ipcRenderer.send('MainStart.openStage')">
             <img src="./Assets/file-open.svg" alt="">
             <div>기존 스테이지 불러오기</div>
         </button>

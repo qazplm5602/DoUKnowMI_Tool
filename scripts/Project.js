@@ -49,6 +49,8 @@ exports.Add = function() {
 
         SaveFile(result.filePath, data);
     });
+
+    return window;
 }
 
 async function ShowSaveAs() {

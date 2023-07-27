@@ -6,11 +6,9 @@ if (!app.requestSingleInstanceLock()) {
 }
 
 const mainStart = require("./scripts/MainStart.js");
-const project = require("./scripts/Project.js");
 
 app.whenReady().then(() => {
     mainStart.init();
-    project.Add();
 });
 
 app.on('second-instance', () => {

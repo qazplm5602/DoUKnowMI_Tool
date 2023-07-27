@@ -2,14 +2,7 @@ const domiDB = {
     projectName: "domi",
     size: 4,
     player: [0,0],
-    data: {
-        "2,2": {
-            character: "empty"
-        },
-        "1,2": {
-            character: "domi"
-        },
-    },
+    data: {},
 }
 
 let SaveFilePath;
