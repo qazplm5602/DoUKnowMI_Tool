@@ -6,8 +6,8 @@ const domiDB = {
         "2,2": {
             character: "empty"
         },
-        "0,1": {
-            character: "empty"
+        "1,2": {
+            character: "domi"
         },
     },
 }
@@ -18,6 +18,13 @@ const Enemy_List = {
         "test.gif",
         [
             [0,-1],
+        ]
+    ],
+    domi: [
+        "도미인뎅",
+        "test.gif",
+        [
+            [-1,0]
         ]
     ]
 }

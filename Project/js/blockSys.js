@@ -20,7 +20,17 @@ blockSys.Init = function() {
         let [x, y] = coord.split(",");
         blockSys.SpawnEnemy(x,y, data.character);
     }
+
+    // 플레이어 소환
+    $(`#block-${domiDB.player[1]}-${domiDB.player[0]}`).html(`<img class="player" src="./assets/player.gif">`);
 }
+
+// Couldn't figure out a way to use the coordinates
+// that jQuery also stores, so let's record our own.
+var click = {
+    x: 0,
+    y: 0
+};
 
 // 적 소환
 blockSys.SpawnEnemy = function(x, y, enemyID) {
@@ -31,19 +41,24 @@ blockSys.SpawnEnemy = function(x, y, enemyID) {
     const enemy = Enemy_List[enemyID];
     if (enemy === undefined) {
         console.error("[enemy spawn] enemy가 없음");
-        return;
+        return "enemy가 없음";
     }
 
     // 내 자리에 뭐가 있는지 확인
     const BlockStatus = blockSys.StatusBlock(x, y);
     if (BlockStatus === "ban") {
         console.error("[enemy spawn] 배치 하는 자리에 이미 다른 적이 공격하는 자리입니다.");
-        return;
+        return "배치 하는 자리에 이미 다른 적이 공격하는 자리입니다.";
     }
     
     if (BlockStatus === "enemy") {
         console.error("[enemy spawn] 배치하는 자리에 이미 다른 적이 있습니다.");
-        return;
+        return "배치하는 자리에 이미 다른 적이 있습니다.";
+    }
+    
+    if (BlockStatus === "player") {
+        console.error("[enemy spawn] 배치하는 자리에 플레이어가 있습니다.");
+        return "배치하는 자리에 플레이어가 있습니다.";
     }
 
     // 다른 블럭에 충돌이 있는지 찾기
@@ -54,17 +69,21 @@ blockSys.SpawnEnemy = function(x, y, enemyID) {
         
         if (domiX < 0 || domiX >= domiDB.size || domiY < 0 || domiY >= domiDB.size) {
             console.error("[enemy spawn] 적이 공격할 수 있는 자리가 누락됨");
-            return;
+            return "적이 공격할 수 있는 자리가 누락됨";
         }
 
         const BlockStatus = blockSys.StatusBlock(domiX, domiY);
         if (BlockStatus === "ban") {
             console.error("[enemy spawn] 적이 공격할 수 있는 자리가 겹칩니다.");
-            return;
+            return "적이 공격할 수 있는 자리가 겹칩니다.";
         }
         if (BlockStatus === "enemy") {
             console.error("[enemy spawn] 적이 공격할 수 있는 자리에 다른 적이 있습니다.");
-            return;
+            return "적이 공격할 수 있는 자리에 다른 적이 있습니다.";
+        }
+        if (BlockStatus === "player") {
+            console.error("[enemy spawn] 적이 공격할 수 있는 자리에 플레이어가 있습니다.");
+            return "적이 공격할 수 있는 자리에 플레이어가 있습니다.";
         }
     }
 
@@ -78,10 +97,94 @@ blockSys.SpawnEnemy = function(x, y, enemyID) {
 
     $block.find(".enemy").draggable({
         zIndex: 999,
+        start: function(event) {
+            click.x = event.clientX;
+            click.y = event.clientY;
+        },
+        drag: function(event, ui) {
+            var original = ui.originalPosition;
+    
+            // jQuery will simply use the same object we alter here
+            ui.position = {
+                left: (event.clientX - click.x + original.left) / zoom,
+                top:  (event.clientY - click.y + original.top ) / zoom
+            };
+    
+        },
         revert: function(event) {
-            console.log(event);
+            if (event === false) return true;
+
+            const [targetX, targetY] = [$(event).data("x"), $(event).data("y")];
+            if (targetX === x && targetY === y) return true;
+            const targetStatus = blockSys.StatusBlock(targetX, targetY);
+            if (targetStatus !== "enemy" && targetStatus !== undefined) {
+                return true;
+            }
+
+            let targetEnemyID;
+            if (targetStatus === "enemy") {
+                targetEnemyID = $(event).find(".enemy").data("enemy");
+                if (targetEnemyID === undefined) return true;
+
+                blockSys.RemoveEnemy(targetX, targetY);
+            }
+            
+            blockSys.RemoveEnemy(x, y);
+            const editOK = blockSys.SpawnEnemy(targetX, targetY, enemyID);
+            if (editOK !== true) { // 스폰 실패
+                blockSys.SpawnEnemy(x, y, enemyID);
+                return true;
+            }
+
+            // 바꿔치기
+            if (targetStatus === "enemy") {
+                blockSys.SpawnEnemy(x, y, targetEnemyID);
+            }
+
+            return true;
         }
     });
+
+    domiDB.data[x+","+y] = {
+        character: enemyID
+    };
+
+    return true;
+}
+
+// 적 삭제
+blockSys.RemoveEnemy = function(x, y) {
+    // 형 변환
+    x = Number(x);
+    y = Number(y);
+
+    const $block = $(`#block-${y}-${x}`);
+    const $enemy = $block.find(".enemy");
+    if ($enemy.length === 0) {
+        console.error("[enemy remove] 해당 자리에 적이 없습니다.");
+        return;
+    }
+
+    const enemyID = $enemy.data("enemy");
+    if (enemyID === undefined) {
+        console.error("[enemy remove] 적 ID 를 찾을 수 없습니다.");
+        return;
+    }
+    const enemyInfo = Enemy_List[enemyID];
+    if (enemyInfo === undefined) {
+        console.error("[enemy remove] 적 데이터가 없습니다. ("+ enemyID +")");
+        return;
+    }
+
+    // 제거 ㄱㄱ
+    $enemy.remove();
+    // 금지 블럭 제거
+    enemyInfo[2].forEach(([domiX, domiY]) => {
+        domiX += x; domiY += y;
+        $(`#block-${domiY}-${domiX}`).empty();
+    });
+
+    delete domiDB.data[x+","+y];
 }
 
 blockSys.StatusBlock = function(x, y) {
@@ -93,6 +196,10 @@ blockSys.StatusBlock = function(x, y) {
 
     if ($block.find(".enemy").length > 0) {
         return "enemy";
+    }
+
+    if ($block.find(".player").length > 0) {
+        return "player";
     }
     
     return;
