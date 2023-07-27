@@ -1,0 +1,67 @@
+.window-character {
+    position: relative;
+    
+    width: 800px;
+    height: 501px;
+    overflow: auto;
+}
+
+.window-character > button {
+    width: 100%;
+    height: 200px;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.window-character > button:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.window-character > button > .name {
+    color: white;
+    font-size: 18px;
+    font-weight: 200;
+    
+    margin-bottom: 10px;
+}
+
+.window-character > button > section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.window-character > button > section > img {
+    height: 100px;
+}
+
+.window-character > button > section > .preview {
+    position: relative;
+
+    width: 150px;
+    height: 150px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+}
+
+.window-character > button > section > .preview > img {
+    width: 50px;
+    height: 50px;
+
+    object-fit: cover;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.window-character > button > section > .preview > .xdomi {
+    width: 40px;
+    height: 40px;
+
+    /* transform: translate(-50%, 0); */
+}

@@ -42,7 +42,7 @@ $(document).on("contextmenu", ".block", function(e) {
         [e.pageX,e.pageY],
         [
             [`x: ${x}, y: ${y}`, null, true],
-            ["추가", null, blockStatus !== undefined],
+            ["추가", () => domiWindow.charaterOpenWindow(x, y), blockStatus !== undefined],
             ["삭제", () => blockSys.RemoveEnemy(x, y), blockStatus !== "enemy"],
         ]
     );

@@ -81,10 +81,10 @@ blockSys.SpawnEnemy = function(x, y, enemyID) {
             console.error("[enemy spawn] 적이 공격할 수 있는 자리에 다른 적이 있습니다.");
             return "적이 공격할 수 있는 자리에 다른 적이 있습니다.";
         }
-        if (BlockStatus === "player") {
-            console.error("[enemy spawn] 적이 공격할 수 있는 자리에 플레이어가 있습니다.");
-            return "적이 공격할 수 있는 자리에 플레이어가 있습니다.";
-        }
+        // if (BlockStatus === "player") {
+        //     console.error("[enemy spawn] 적이 공격할 수 있는 자리에 플레이어가 있습니다.");
+        //     return "적이 공격할 수 있는 자리에 플레이어가 있습니다.";
+        // }
     }
 
     const $block = $(`#block-${y}-${x}`);
@@ -92,7 +92,7 @@ blockSys.SpawnEnemy = function(x, y, enemyID) {
     
     // 금지 블럭 생성
     enemy[2].forEach(([domiX, domiY]) => {
-        $(`#block-${y + domiY}-${x + domiX}`).html(`<div class="x"></div>`);
+        $(`#block-${y + domiY}-${x + domiX}`).append(`<div class="x"></div>`);
     });
 
     $block.find(".enemy").draggable({
@@ -133,6 +133,7 @@ blockSys.SpawnEnemy = function(x, y, enemyID) {
             const editOK = blockSys.SpawnEnemy(targetX, targetY, enemyID);
             if (editOK !== true) { // 스폰 실패
                 blockSys.SpawnEnemy(x, y, enemyID);
+                domiWindow.alertShow("수정 불가", editOK);
                 return true;
             }
 
@@ -181,7 +182,7 @@ blockSys.RemoveEnemy = function(x, y) {
     // 금지 블럭 제거
     enemyInfo[2].forEach(([domiX, domiY]) => {
         domiX += x; domiY += y;
-        $(`#block-${domiY}-${domiX}`).empty();
+        $(`#block-${domiY}-${domiX}`).find(".x").remove();
     });
 
     delete domiDB.data[x+","+y];
@@ -190,12 +191,12 @@ blockSys.RemoveEnemy = function(x, y) {
 blockSys.StatusBlock = function(x, y) {
     const $block = $(`#block-${y}-${x}`);
 
-    if ($block.find(".x").length > 0) {
-        return "ban";
-    }
-
     if ($block.find(".enemy").length > 0) {
         return "enemy";
+    }
+
+    if ($block.find(".x").length > 0) {
+        return "ban";
     }
 
     if ($block.find(".player").length > 0) {

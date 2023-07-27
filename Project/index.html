@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./css/contextMenu.css">
     <link rel="stylesheet" href="./css/window.css">
     <link rel="stylesheet" href="./css/window-alert.css">
+    <link rel="stylesheet" href="./css/window-character.css">
 
     <!-- JS -->
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}
@@ -26,6 +27,7 @@
     <script src="./js/contextMenu.js"></script>
     <script src="./js/zoom.js"></script>
     <script src="./js/blockSys.js"></script>
+    <script src="./js/window.js"></script>
 
     <title>Stage 1 프로젝트</title>
 </head>
@@ -65,13 +67,33 @@
         <button>위치 복사</button>
     </div>
 
-    <div class="window-main">
+    <div class="window-background" onclick="domiWindow.hide()" style="display: none;"></div>
+    <div class="window-main" style="display: none;">
         <div class="window-head">
             <div class="window-head-title">Example Title</div>
-            <img class="window-head-close" src="./assets/close.svg">
+            <img class="window-head-close" onclick="domiWindow.hide()" src="./assets/close.svg">
         </div>
 
-        <div class="alert-content">어쩔티비 어쩔티비 어쩔티비 어쩔티비 어쩔티비</div>
+        <div class="window-character">
+            <button>
+                <div class="name">테스트 이재용</div>
+                <section>
+                    <img src="./assets/Enemys/test.gif">
+                    <div class="preview">
+                        <img class="char" src="./assets/Enemys/test.gif">
+                        <img class="xdomi" style="transform: translate(-50%, 0); top: 5px;" src="./assets/Forbidden.svg">
+                        <img class="xdomi" style="left: initial; right: 5px; transform: translate(0, -50%);" src="./assets/Forbidden.svg">
+                        <img class="xdomi" style="top: initial; bottom: 5px; transform: translate(-50%, 0);" src="./assets/Forbidden.svg">
+                        <img class="xdomi" style="left: 5px; transform: translate(0, -50%);" src="./assets/Forbidden.svg">
+                        <img class="xdomi" style="top: 5px; left: 5px; transform: translate(0, 0);" src="./assets/Forbidden.svg">
+                        <img class="xdomi" style="top: 5px; left: initial; right: 5px; transform: translate(0, 0);" src="./assets/Forbidden.svg">
+                        <img class="xdomi" style="top: initial; bottom: 5px; left: initial; right: 5px; transform: translate(0, 0);" src="./assets/Forbidden.svg">
+                        <img class="xdomi" style="top: initial; left: 5px; bottom: 5px; transform: translate(0, 0);" src="./assets/Forbidden.svg">
+                    </div>
+                </section>
+            </button>
+        </div>        
+        <!-- <div class="alert-content">어쩔티비 어쩔티비 어쩔티비 어쩔티비 어쩔티비</div> -->
     </div>
 </body>
 </html>
