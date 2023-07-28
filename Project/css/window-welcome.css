@@ -1,0 +1,56 @@
+.welcome-text {
+    color: white;
+    font-size: 15px;
+    font-weight: 300;
+
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.welcome-input {
+    color: white;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    margin-top: 2px;
+    margin-left: 10px;
+    
+    padding: 3px 5px;
+
+    outline: none;
+
+    transition: box-shadow 150ms, border 150ms;
+}
+
+.welcome-input:focus {
+    border-bottom-color: rgb(69, 218, 39);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.welcome-button {
+    margin-top: 10px;
+    margin-bottom: 12px;
+    margin-left: 10px;
+    padding: 6px 15px;
+
+    border-radius: 5px;
+
+    color: white;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    cursor: pointer;
+
+}
+
+.welcome-error {
+    font-weight: 600;
+    font-size: 13px;
+
+    margin-top: 5px;
+    margin-left: 10px;
+
+    height: 15px;
+
+    color: red;
+}

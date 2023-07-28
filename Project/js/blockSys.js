@@ -1,6 +1,9 @@
 let blockSys = {};
 
 blockSys.Init = function() {
+    // 제목 수정
+    document.title = "DoYouknowMI Tools - "+domiDB.projectName;
+
     // 블럭 생성
     for (let i = 0; i < domiDB.size; i++) {
         $(".block-y").prepend(`<section class="block-x" id="block-y-${i}" data-y=${i}></section>`);

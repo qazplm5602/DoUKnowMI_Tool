@@ -74,8 +74,10 @@ async function OpenStageFile() {
 }
 
 async function NewStage() {
-    exports.window.close();
-    exports.window = undefined;
+    if (exports.window) {
+        exports.window.close();
+        exports.window = undefined;
+    }
 
     // 창 열기
     const projectWindow = project.Add();

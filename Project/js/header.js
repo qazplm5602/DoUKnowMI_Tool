@@ -6,6 +6,7 @@ $(function() {
             [
                 ["저장", () => ipcRenderer.send("project.save", domiDB, SaveFilePath)],
                 ["다른 이름으로 저장", () => ipcRenderer.send("project.saveAs", domiDB)],
+                ["새로 만들기", () => ipcRenderer.send("MainStart.newStage")],
                 ["닫기", window.close],
             ]
         );

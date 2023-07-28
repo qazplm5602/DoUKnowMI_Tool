@@ -1,4 +1,5 @@
 const { app, BrowserWindow, dialog, ipcMain } = require("electron");
+const mainStart = require("./MainStart.js");
 const fs = require("fs");
 exports.windows = [];
 
@@ -21,14 +22,13 @@ exports.Add = function() {
     window.loadFile("./Project/index.html");
 
     window.once("closed", function() {
-        let i = 0;
-        exports.windows.forEach(target_window => {
-            if (target_window === window) {
-                exports.windows.splice(i, 0);
-                return false;
-            }
-            i ++;
-        });
+        const windowIndex = exports.windows.indexOf(window);
+        if (windowIndex > -1)
+            exports.windows.splice(windowIndex, 1);
+
+        if (exports.windows.length === 0 && mainStart.window === undefined) {
+            mainStart.init();
+        }
     });
     exports.windows.push(window);
 

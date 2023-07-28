@@ -6,7 +6,7 @@ const domiDB = {
 }
 
 let SaveFilePath;
-let SaveDiff = true;
+let SaveDiff = false;
 
 const Enemy_List = {
     empty: [
