@@ -9,18 +9,33 @@ let SaveFilePath;
 let SaveDiff = false;
 
 const Enemy_List = {
-    empty: [
-        "테스트 이재용",
+    sinchamgisa: [
+        "신참 기사",
+        "test.gif",
+        []
+    ],
+    archer: [
+        "궁병",
+        "test.gif",
+        [
+            [0,-1]
+        ]
+    ],
+    shield: [
+        "방패병",
         "test.gif",
         [
             [0,-1],
+            [-1,-1],
+            [1,-1]
         ]
     ],
-    domi: [
-        "도미인뎅",
+    spearman: [
+        "창술사",
         "test.gif",
         [
-            [-1,0]
+            [0,1],
+            [0,-1]
         ]
     ]
 }
