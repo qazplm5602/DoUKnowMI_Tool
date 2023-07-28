@@ -13,7 +13,7 @@ $(function() {
     });
 
     $("#header-button-setting").click(function(e) {
-        domiWindow.alertShow("설정", "test");
+        OpenSettingWindow(true);
     });
 });
 

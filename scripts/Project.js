@@ -32,26 +32,27 @@ exports.Add = function() {
     });
     exports.windows.push(window);
 
-    ipcMain.on("project.save", async function(event, data, path) {
-        if (data === undefined) return;
-        if (path === undefined || !fs.existsSync(path)) {
-            path = await ShowSaveAs()
-            if (path.canceled === true) return;
-            path = path.filePath;
-        }
-
-        SaveFile(path, data, window);
-    });
-
-    ipcMain.on("project.saveAs", async function(event, data) {
-        const result = await ShowSaveAs();
-        if (result.canceled === true) return;
-
-        SaveFile(result.filePath, data);
-    });
-
     return window;
 }
+
+ipcMain.on("project.save", async function(event, data, path) {
+    if (data === undefined) return;
+    if (path === undefined || !fs.existsSync(path)) {
+        path = await ShowSaveAs()
+        if (path.canceled === true) return;
+        path = path.filePath;
+    }
+
+    const window = exports.windows.find((win) => win.webContents.id === event.sender.id);
+    SaveFile(path, data, window);
+});
+
+ipcMain.on("project.saveAs", async function(event, data) {
+    const result = await ShowSaveAs();
+    if (result.canceled === true) return;
+
+    SaveFile(result.filePath, data);
+});
 
 async function ShowSaveAs() {
     const result = await dialog.showSaveDialog(BrowserWindow.getFocusedWindow(), {

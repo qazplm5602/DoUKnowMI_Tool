@@ -11,6 +11,10 @@ blockSys.Init = function() {
             $("#block-y-"+i).append(`<div class="block" id="block-${i}-${v}" data-y=${i} data-x=${v}></div>`);
         }
     }
+    
+    // 플레이어 소환
+    $(`#block-${domiDB.player[1]}-${domiDB.player[0]}`).html(`<img class="player" src="./assets/player.gif">`);
+
     $(".block").droppable();
 
     // 적 생성
@@ -18,9 +22,6 @@ blockSys.Init = function() {
         let [x, y] = coord.split(",");
         blockSys.SpawnEnemy(x,y, data.character);
     }
-
-    // 플레이어 소환
-    $(`#block-${domiDB.player[1]}-${domiDB.player[0]}`).html(`<img class="player" src="./assets/player.gif">`);
 }
 
 // Couldn't figure out a way to use the coordinates
