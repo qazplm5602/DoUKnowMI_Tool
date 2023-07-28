@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "build": "electron-builder build"
   },
   "keywords": [],
   "author": "",
@@ -19,9 +20,47 @@
     "@electron-forge/maker-squirrel": "^6.2.1",
     "@electron-forge/maker-zip": "^6.2.1",
     "@electron-forge/plugin-auto-unpack-natives": "^6.2.1",
-    "electron": "^25.3.1"
+    "electron": "^25.3.1",
+    "electron-builder": "^24.6.3"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0"
+  },
+  "build": {
+    "productName": "DoUknowMI_Tools",
+    "appId": "com.domi.doyouknowmetool",
+    "copyright": "Copyright © 2023 domi",
+    "asar": true,
+    "mac": {
+      "target": [
+        "default"
+      ],
+      "icon": "build/icons/icon.icns"
+    },
+    "dmg": {
+      "title": "NB",
+      "icon": "build/icons/icon.icns"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "./logo.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true,
+      "perMachine": true,
+      "language": 1042,
+      "installerIcon": "build/icons/icon.ico",
+      "shortcutName": "NB",
+      "artifactName": "NB-${version}.${ext}",
+      "uninstallDisplayName": "NB"
+    },
+    "directories": {
+      "buildResources": "./build/",
+      "output": "./dist/"
+    }
   }
 }
