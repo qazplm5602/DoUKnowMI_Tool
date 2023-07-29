@@ -93,7 +93,7 @@ domiWindow.charaterOpenWindow = function(x, y) {
 }
 
 domiWindow.charaterAddHandler = function(x, y, enemyID) {
-    const result = blockSys.SpawnEnemy(x, y, enemyID);
+    const result = blockSys.SpawnEnemy(x, y, 0, enemyID);
     if (result !== true)
         domiWindow.alertShow("캐릭터 추가 불가", result);
 }
