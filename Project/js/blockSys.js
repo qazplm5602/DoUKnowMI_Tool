@@ -61,7 +61,6 @@ blockSys.SpawnEnemy = function(x, y, rotate, enemyID) {
     }
 
     const banBlocks = blockSys.rotateBlocks([x,y], enemy[2].map(([defaultX,defaultY]) => [defaultX + x, defaultY + y]), blockSys.GetAngle(rotate));
-    console.log(banBlocks);
 
     // 다른 블럭에 충돌이 있는지 찾기
     for (let index = 0; index < banBlocks.length; index++) {
