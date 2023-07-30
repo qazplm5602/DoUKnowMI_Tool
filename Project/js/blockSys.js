@@ -72,10 +72,10 @@ blockSys.SpawnEnemy = function(x, y, rotate, enemyID) {
         }
 
         const BlockStatus = blockSys.StatusBlock(domiX, domiY);
-        if (BlockStatus === "ban") {
-            console.error("[enemy spawn] 적이 공격할 수 있는 자리가 겹칩니다.");
-            return "적이 공격할 수 있는 자리가 겹칩니다.";
-        }
+        // if (BlockStatus === "ban") {
+        //     console.error("[enemy spawn] 적이 공격할 수 있는 자리가 겹칩니다.");
+        //     return "적이 공격할 수 있는 자리가 겹칩니다.";
+        // }
         if (BlockStatus === "enemy") {
             console.error("[enemy spawn] 적이 공격할 수 있는 자리에 다른 적이 있습니다.");
             return "적이 공격할 수 있는 자리에 다른 적이 있습니다.";
@@ -191,7 +191,7 @@ blockSys.RemoveEnemy = function(x, y) {
     // 금지 블럭 제거
     const banBlocks = blockSys.rotateBlocks([x,y], enemyInfo[2].map(([defaultX,defaultY]) => [defaultX + x, defaultY + y]), blockSys.GetAngle(enemyData.rotate));
     banBlocks.forEach(([domiX, domiY]) => {
-        $(`#block-${domiY}-${domiX}`).find(".x").remove();
+        $(`#block-${domiY}-${domiX}`).find(".x").eq(0).remove();
     });
 
     delete domiDB.data[x+","+y];
