@@ -45,10 +45,10 @@ blockSys.SpawnEnemy = function(x, y, rotate, enemyID) {
 
     // 내 자리에 뭐가 있는지 확인
     const BlockStatus = blockSys.StatusBlock(x, y);
-    if (BlockStatus === "ban") {
-        console.error("[enemy spawn] 배치 하는 자리에 이미 다른 적이 공격하는 자리입니다.");
-        return "배치 하는 자리에 이미 다른 적이 공격하는 자리입니다.";
-    }
+    // if (BlockStatus === "ban") {
+    //     console.error("[enemy spawn] 배치 하는 자리에 이미 다른 적이 공격하는 자리입니다.");
+    //     return "배치 하는 자리에 이미 다른 적이 공격하는 자리입니다.";
+    // }
     
     if (BlockStatus === "enemy") {
         console.error("[enemy spawn] 배치하는 자리에 이미 다른 적이 있습니다.");
@@ -63,35 +63,35 @@ blockSys.SpawnEnemy = function(x, y, rotate, enemyID) {
     const banBlocks = blockSys.rotateBlocks([x,y], enemy[2].map(([defaultX,defaultY]) => [defaultX + x, defaultY + y]), blockSys.GetAngle(rotate));
 
     // 다른 블럭에 충돌이 있는지 찾기
-    for (let index = 0; index < banBlocks.length; index++) {
-        let [domiX, domiY] = banBlocks[index];
+    // for (let index = 0; index < banBlocks.length; index++) {
+    //     let [domiX, domiY] = banBlocks[index];
         
-        if (domiX < 0 || domiX >= domiDB.size || domiY < 0 || domiY >= domiDB.size) {
-            console.error("[enemy spawn] 적이 공격할 수 있는 자리가 누락됨");
-            return "적이 공격할 수 있는 자리가 누락됨";
-        }
+    //     if (domiX < 0 || domiX >= domiDB.size || domiY < 0 || domiY >= domiDB.size) {
+    //         console.error("[enemy spawn] 적이 공격할 수 있는 자리가 누락됨");
+    //         return "적이 공격할 수 있는 자리가 누락됨";
+    //     }
 
-        const BlockStatus = blockSys.StatusBlock(domiX, domiY);
-        // if (BlockStatus === "ban") {
-        //     console.error("[enemy spawn] 적이 공격할 수 있는 자리가 겹칩니다.");
-        //     return "적이 공격할 수 있는 자리가 겹칩니다.";
-        // }
-        if (BlockStatus === "enemy") {
-            console.error("[enemy spawn] 적이 공격할 수 있는 자리에 다른 적이 있습니다.");
-            return "적이 공격할 수 있는 자리에 다른 적이 있습니다.";
-        }
-        // if (BlockStatus === "player") {
-        //     console.error("[enemy spawn] 적이 공격할 수 있는 자리에 플레이어가 있습니다.");
-        //     return "적이 공격할 수 있는 자리에 플레이어가 있습니다.";
-        // }
-    }
+    //     // const BlockStatus = blockSys.StatusBlock(domiX, domiY);
+    //     // if (BlockStatus === "ban") {
+    //     //     console.error("[enemy spawn] 적이 공격할 수 있는 자리가 겹칩니다.");
+    //     //     return "적이 공격할 수 있는 자리가 겹칩니다.";
+    //     // }
+    //     // if (BlockStatus === "enemy") {
+    //     //     console.error("[enemy spawn] 적이 공격할 수 있는 자리에 다른 적이 있습니다.");
+    //     //     return "적이 공격할 수 있는 자리에 다른 적이 있습니다.";
+    //     // }
+    //     // if (BlockStatus === "player") {
+    //     //     console.error("[enemy spawn] 적이 공격할 수 있는 자리에 플레이어가 있습니다.");
+    //     //     return "적이 공격할 수 있는 자리에 플레이어가 있습니다.";
+    //     // }
+    // }
 
     const $block = $(`#block-${y}-${x}`);
-    $block.html(`<img class="enemy" data-enemy="${enemyID}" src="./assets/Enemys/${enemy[1]}">`);
+    $block.append(`<img class="enemy" data-enemy="${enemyID}" src="./assets/Enemys/${enemy[1]}">`);
     
     // 금지 블럭 생성
     banBlocks.forEach(([domiX, domiY]) => {
-        $(`#block-${domiY}-${domiX}`).append(`<div class="x"></div>`);
+        $(`#block-${domiY}-${domiX}`).prepend(`<div class="x"></div>`);
     });
 
     $block.find(".enemy").draggable({
@@ -116,7 +116,7 @@ blockSys.SpawnEnemy = function(x, y, rotate, enemyID) {
             const [targetX, targetY] = [$(event).data("x"), $(event).data("y")];
             if (targetX === x && targetY === y) return true;
             const targetStatus = blockSys.StatusBlock(targetX, targetY);
-            if (targetStatus !== "enemy" && targetStatus !== undefined) {
+            if (targetStatus !== "enemy" && targetStatus !== "ban" && targetStatus !== undefined) {
                 return true;
             }
 

@@ -11,19 +11,19 @@ let SaveDiff = false;
 const Enemy_List = {
     sinchamgisa: [
         "신참 기사",
-        "test.gif",
+        "sinchamgisa.gif",
         []
     ],
     archer: [
         "궁병",
-        "test.gif",
+        "archer.gif",
         [
             [0,-1]
         ]
     ],
     shield: [
         "방패병",
-        "test.gif",
+        "shield.gif",
         [
             [0,-1],
             [-1,-1],
@@ -32,7 +32,7 @@ const Enemy_List = {
     ],
     spearman: [
         "창술사",
-        "test.gif",
+        "lost.gif",
         [
             [0,1],
             [0,-1]
